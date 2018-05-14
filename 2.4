@@ -1,0 +1,66 @@
+class Main
+{
+    public static void main(String args [])
+    {
+        System.out.println("#Please enter a size: ");
+        int input = BIO.getInt();
+        
+        if(input % 2 == 1 && input >= 5 && input <= 41)
+        {
+            PrintDiamond(input);
+        }
+        else if(input <= 5 || input >= 41)
+        {
+            System.out.printf("Side of diamond (%d) must be between 5 & 41", input);
+        }
+        else
+        {
+            System.out.printf("Side of diamond (%d) must be odd", input);
+        }
+        
+    }
+    public static void PrintDiamond(int input)
+    {
+        for(int i = 1; i <= input; i++)
+        {
+            for(int j = 1; j <= input; j++)
+            {
+                if(i == 1 || i == input)
+                {
+                    if(j == ((input + 1)/2))
+                    {
+                        System.out.print("*");
+                    }
+                    else
+                    {
+                        System.out.print(".");
+                    }
+                }
+                else if(j >= 1 || j <= input)
+                {
+                    if(j == (((input + 1)/2) - (i-1)))
+                    {
+                        System.out.print("*");
+                    }
+                    else if(j == (((input + 1)/2) + (i-1)))
+                    {
+                        System.out.print("*");
+                    }
+                    else if(j == (((input + 1)/2) + (input - i)))
+                    {
+                        System.out.print("*");
+                    }
+                    else if(j == (((input + 1)/2) - (input - i)))
+                    {
+                        System.out.print("*");
+                    }
+                    else
+                    {
+                        System.out.print(".");
+                    }
+                }
+            }
+         System.out.println();
+        }
+    }
+}

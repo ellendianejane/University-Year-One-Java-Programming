@@ -1,0 +1,27 @@
+class Main
+{
+    public static void main(String args[])
+    {
+        boolean loop = false;
+        
+        while(loop == false)
+        {
+            System.out.println("#Please enter a line");
+            String line = BIO.getString();
+            int space = 0;
+            if(line.equals("END"))
+            {
+                loop = true;
+                break;
+            }
+            for(int i = 0; i < line.length(); i++)
+            {
+                if(line.charAt(i) == ' ')
+                {
+                    space = space + 1;
+                }
+            }
+            System.out.println("[ "+space+"] spaces in \""+line+"\"");
+        }
+    }
+}

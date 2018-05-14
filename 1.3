@@ -1,0 +1,28 @@
+class Main
+{
+    public static void main(String args [])
+    {
+        boolean terminate = false;
+        while(terminate == false)
+        {
+            System.out.println("#Enter the Student's number: ");
+            int StudNum = BIO.getInt();
+            
+            if(StudNum == 0)
+            {
+                terminate = true;
+                break;
+            }
+            System.out.println("#Enter their Coursework Mark: ");
+            int cw = BIO.getInt();
+        
+            System.out.println("#Enter their exam mark: ");
+            int ex = BIO.getInt();
+        
+            double mark = ((double)(cw + ex)/2);
+        
+            System.out.println("sn = " + StudNum + " ex = " + ex + " cw = " + cw + " mark = " + mark);
+        }
+    
+    }
+}

@@ -1,0 +1,97 @@
+class Main
+{
+    
+    public static void main(String args[]){
+ 
+        System.out.print("#Enter width : " );
+        int width = BIO.getInt();
+ 
+        System.out.print("#Enter line of text : " );
+        String line = BIO.getString().trim();
+ 
+        int nGaps, spToAdd, gapsLeft, modLeft, rem;
+        nGaps = spToAdd = gapsLeft = rem = 0;
+ 
+        double route = 0;
+        String sp = " ";
+ 
+        while ( ! line.equals( "END" )){
+ 
+            nGaps = numGaps(line);
+ 
+            if (nGaps == 0) { line = compLine(line, width).replace(" ", "."); }
+            else if (nGaps == width) { line = line.replace(" ", "."); }
+ 
+            else{
+                int posArray[] = new int[nGaps];
+                posArray = pos(line, nGaps);
+                gapsLeft = width - line.length();
+                spToAdd = gapsLeft / nGaps;
+                modLeft = gapsLeft % nGaps;
+                route = gapsLeft / nGaps;
+                sp = spGen(spToAdd);
+ 
+                line = reFormat(posArray, line, width, sp, spToAdd);
+                if (line.length() < width){
+                    System.out.print("#OK\n");
+                    nGaps = numGaps(line);
+                    int posArray2[] = new int[nGaps];
+                    posArray2 = pos(line, nGaps);
+                    line = compFormat(posArray2, line, modLeft);
+                }
+                line = line.replace(" ", ".");
+            }
+            System.out.println(line);
+            System.out.println("#Length is: " + line.length());
+            System.out.print("#Enter line of text : " );
+            line = BIO.getString().trim();
+        }
+    }
+    public static int numGaps(String oLine){
+        int numGaps = 0;
+        for (char c : oLine.toCharArray()) { if (c == ' ') { numGaps++; } }
+        return numGaps;
+    }
+    public static String spGen(int count) {
+        return new String(new char[count]).replace("\0", " ");
+    }
+    public static String compLine(String oLine, int width){
+        String newLine = oLine;
+        int pos = oLine.length();
+        int numOSpace = width - oLine.length();
+        String sp = spGen(numOSpace);
+        newLine = new StringBuilder(newLine).insert(pos, sp).toString();
+        return newLine;
+    }
+    public static int[] pos(String oLine, int nGaps){
+        int posArray[] = new int[nGaps];
+        int i = 0;
+        for (int pos = 0; pos < oLine.length(); pos++) {
+            if (oLine.charAt(pos) == ' ') { posArray[i] = pos; i++; }
+        }
+        //for (int y = 0; y < x; ++y) { System.out.println(posArray[y]); }
+        return posArray;
+    }
+    public static String reFormat(int[] posArray, String oLine, int width, String sp, int spToAdd){
+        String newLine = oLine;
+        int mark = 0;
+        for (int i = 0; i < posArray.length; ++i){ /*insert string at mark, shift next element by the num of elements inserted*/
+            if (newLine.length() > width) { System.out.println("Maths is wrong: ERROR"); System.exit(1);}
+            else { newLine = new StringBuilder(newLine).insert(posArray[i]+mark, sp).toString(); mark += spToAdd; }
+        }
+        return newLine;
+    }
+    public static String compFormat(int[] posArray2, String mLine, int modLeft){
+        String newLine = mLine;
+        int mark = 0;
+        for (int i = 0; i < modLeft; ++i){
+            //positions
+            //if position y is != y+1 insert sp modLeft times
+            if (posArray2[i] != posArray2[i+1] && posArray2[i] != posArray2[posArray2.length - 1]){
+                newLine = new StringBuilder(newLine).insert(posArray2[i]+mark, " ").toString(); mark++;
+            }
+        }
+        return newLine;
+    }
+
+}

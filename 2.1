@@ -1,0 +1,31 @@
+class Main
+{
+    public static void main(String args [])
+    {
+        boolean fail = false;
+        
+        while(fail == false)
+        {
+            System.out.print("#Please enter student name");
+            String StudName = BIO.getString();
+            
+            if(StudName.equals("END"))
+            {
+                fail = true;
+                break;
+            }
+            
+            System.out.print("#Please enter the module mark");
+            int mm = BIO.getInt();
+            
+            if(mm >= 40)
+            {
+                System.out.println(StudName + " Pass");
+            }
+            else
+            {
+                System.out.println(StudName + " Fail");
+            }
+        }
+    }
+}

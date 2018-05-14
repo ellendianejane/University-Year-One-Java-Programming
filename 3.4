@@ -1,0 +1,45 @@
+class Main
+{
+    public static void main(String args [])
+    {
+        System.out.print("#Please enter a word: ");
+        String text = BIO.getString();
+        String textlc = text.toLowerCase();
+        boolean end = false;
+        
+        while(end == false)
+        {
+            if(text.equals("END"))
+            {
+                end = true;
+                break;
+            }
+            
+            char[] wordArray = textlc.toCharArray();
+            int start = 0;
+            int finish = wordArray.length-1;
+            boolean palindrome = true;
+            
+            loop:
+            while(palindrome == true)
+            {
+                palindrome = false;
+                
+                for(start = 0; start<finish; start ++)
+                {
+                    if(textlc.charAt(start) != textlc.charAt(finish))
+                    {
+                        System.out.printf("%-10s is not a palindrome \n", text);
+                        break loop;
+                    }
+                    finish --;
+                }
+                System.out.printf("%-10s is a palindrome \n", text);
+            }
+            System.out.print("#Enter a word: ");
+            text = BIO.getString();
+            textlc = text.toLowerCase();
+        }
+    }
+}
+

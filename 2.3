@@ -1,0 +1,37 @@
+class Main
+{
+    public static void main(String args [])
+    {
+        boolean fail = false;
+        while(fail == false)
+        {
+            System.out.println("#Please enter student name");
+            String StudName = BIO.getString();
+            if(StudName.equals("END"))
+            {
+                fail = true;
+                break;
+            }
+            System.out.println("#Please enter the coursework mark");
+            int cwmark = BIO.getInt();
+            
+            System.out.println("#Please enter the exam mark");
+            int exmark = BIO.getInt();
+            
+            double allmark = ((double)(cwmark + exmark)/2);
+            
+            if(allmark >= 40 && cwmark >= 30 && exmark >= 30)
+            {
+                System.out.println(StudName + " [" + cwmark + "," + exmark + "] " + allmark + " Pass");
+            }
+            else if(allmark < 40)
+            {
+                System.out.println(StudName + " [" + cwmark + "," + exmark + "] " + allmark + " Fail");
+            }
+            else if(exmark < 30 || cwmark < 30)
+            {
+                System.out.println(StudName + " [" + cwmark + "," + exmark + "] " + allmark + " Fail [Threshold]");
+            }
+        }
+    }
+}

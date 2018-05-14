@@ -1,0 +1,138 @@
+class Main
+{
+    private static int input;
+    private static int remainder;
+    private static int[] noOfCoins = new int[8];
+
+    public static void main(String args[])
+    {
+        boolean terminate = false;
+
+        System.out.println("Amount  Coins");
+
+        while (terminate == false)
+        {
+            System.out.print("#Enter the amount of change needed: ");
+            input = BIO.getInt();
+            remainder = input;
+
+            if (input == 0)
+            {
+                terminate = true;
+                break;
+            }
+            
+            if (input > 500 || input < 0) 
+            {
+                System.out.println("Invalid amount " + input + "p");
+            }
+            else
+            {
+                noOfCoins[0] = remainder / 200;
+                remainder = remainder % 200;
+
+                noOfCoins[1] = remainder / 100;
+            remainder = remainder % 100;
+
+            noOfCoins[2] = remainder / 50;
+            remainder = remainder % 50;
+
+            noOfCoins[3] = remainder / 20;
+            remainder = remainder % 20;
+
+            noOfCoins[4] = remainder / 10;
+            remainder = remainder % 10;
+
+            noOfCoins[5] = remainder / 5;
+            remainder = remainder % 5;
+
+            noOfCoins[6] = remainder / 2;
+            remainder = remainder % 2;
+
+            noOfCoins[7] = remainder / 1;
+            remainder = remainder % 1;
+
+            //finish this part!!!
+
+            // Summing all elements
+            int total = 0;
+            for (int i = 0; i < noOfCoins.length; i++) {
+                total += noOfCoins[i];
+            }
+
+            if (total == 1)
+            {
+                //finding the max value
+                int max = 0;
+                int i;
+                for (i = 1; i < noOfCoins.length; i++) {
+                    if (noOfCoins[i] > max) 
+                    {
+                        max = i;
+                    }
+                }
+                System.out.print(input + "p    " + total + " coin ");
+                String coinValue;
+                switch (max + 1) {
+                    case 1: coinValue = "200p";
+                    break;
+                    case 2: coinValue = "100p";
+                    break;
+                    case 3: coinValue = "50p";
+                    break;
+                    case 4: coinValue = "20p";
+                    break;
+                    case 5: coinValue = "10p";
+                    break;
+                    case 6: coinValue = "5p";
+                    break;
+                    case 7: coinValue = "2p";
+                    break;
+                    case 8: coinValue = "1p";
+                    break;
+                    default: coinValue = "NULL";
+                    break;
+                }
+                System.out.print(coinValue);
+            }
+            else
+            {
+                System.out.print(input + "p    " + total + " coins ");
+                
+                if (noOfCoins[0] >0)
+                {
+                    System.out.print(noOfCoins[0] > 1 ? noOfCoins[0] + "*200p " : "200p ");
+                }
+                if (noOfCoins[1] > 0)
+                {
+                    System.out.print(noOfCoins[1] > 1 ? noOfCoins[1] + "*100p " : "100p ");
+                }
+                if (noOfCoins[2] >0)
+                {
+                    System.out.print(noOfCoins[2] > 1 ? noOfCoins[2] + "*50p " : "50p ");
+                }
+                if (noOfCoins[3] >0)
+                {
+                    System.out.print(noOfCoins[3] > 1 ? noOfCoins[3] + "*20p " : "20p ");
+                }if (noOfCoins[4] >0)
+                {
+                    System.out.print(noOfCoins[4] > 1 ? noOfCoins[4] + "*10p " : "10p ");
+                }if (noOfCoins[5] >0)
+                {
+                    System.out.print(noOfCoins[5] > 1 ? noOfCoins[5] + "*5p " : "5p ");
+                }
+                if (noOfCoins[6] >0)
+                {
+                    System.out.print(noOfCoins[6] > 1 ? noOfCoins[6] + "*2p " : "2p ");
+                }
+                if (noOfCoins[7] >0)
+                {
+                    System.out.print(noOfCoins[7] > 1 ? noOfCoins[7] + "*1p " : "1p ");
+                }
+            }
+                System.out.print("\n");
+}
+            
+        }
+    }
+}

@@ -1,0 +1,39 @@
+class Main
+{
+    public static void main(String args [])
+    {
+        boolean fail = false;
+        while(fail == false)
+        {
+            System.out.println("#Please enter student name");
+            String StudName = BIO.getString();
+            if(StudName.equals("END"))
+            {
+                fail = true;
+                break;
+            }
+            System.out.println("#Please enter the overall mark");
+            int mark = BIO.getInt();
+            if(mark >= 70 && mark <= 100)
+            {
+                System.out.println(StudName + " [" + mark + "]" + " gains a 1st");
+            }
+            else if(mark >= 60 && mark <= 69)
+            {
+                System.out.println(StudName + " [" + mark + "]" + " gains a 2.1");
+            }
+            else if(mark >= 50 && mark <= 59)
+            {
+                System.out.println(StudName + " [" + mark + "]" + " gains a 2.2");
+            }
+            else if(mark >= 40 && mark <= 49)
+            {
+                System.out.println(StudName + " [" + mark + "]" + " gains a 3rd");
+            }
+            else if(mark <= 39)
+            {
+                System.out.println(StudName + " [" + mark + "]" + " fails");
+            }
+        }
+    }
+}

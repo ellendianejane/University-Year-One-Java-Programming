@@ -1,0 +1,155 @@
+import java.util.*;
+/**
+ * Deal with processing money entered by a customer
+ * to purchase tickets.
+ */
+public class ProcessMoney
+{
+  // Instance variables to hold the state of
+  //   the ticket machine
+  private int theTicketPrice = 0;         // Ticket price
+  private int theCredit = 0;              // Money from customer
+  private int theMoneyInTheMachine = 0;   // All the money
+  
+  private ArrayList<Integer> coins = new ArrayList<Integer>(Collections.nCopies(5, 0));
+  private ArrayList<Integer> tempCoins = new ArrayList<Integer>(Collections.nCopies(5, 0));
+  /**
+   * Set the price for the current ticket
+   * @param amount Cost of ticket in pence 
+   */
+  public void setTicketPrice( int amount )
+  {
+    theTicketPrice = amount;
+  }
+
+  /**
+   * Return the price in pence of the current ticket
+   * @return  Cost of ticket in pence
+   */
+  public int getTicketPrice()
+  {
+    return theTicketPrice;
+  }
+
+  /**
+   * Add a coin with value 'coin' in pence 
+   *  to the ticket machine to 'partial' pay for the ticket.
+   * @param coin The coin to add to the ticket machine
+   */
+  public void add( int coin )
+  {
+    theCredit = theCredit + coin;
+    switch(coin)
+    {
+        case 200: 
+            tempCoins.set(0, tempCoins.get(0)+1);
+            break;
+        case 100:
+            tempCoins.set(1, tempCoins.get(1)+1);
+            break;
+        case 50:
+            tempCoins.set(2, tempCoins.get(2)+1);
+            break;
+        case 20:
+            tempCoins.set(3, tempCoins.get(3)+1);
+            break;
+        case 10:
+            tempCoins.set(4, tempCoins.get(4)+1);
+            break;
+    }
+  } 
+
+  /**
+   * Return true if sufficent money has been entered to buy
+   * the ticket else return false
+   * @return true if sufficient money else false
+   */
+  public boolean enough()
+  {
+    boolean paid = false;
+    if(theCredit >= theTicketPrice)
+    {
+        paid = true;
+    }
+    return paid;
+  }
+
+  /**
+   * Return the value in pence paid so far into the machine
+   *  for a ticket
+   * @return  In pence the amount paid so far
+   */
+  public int getPaidSoFar()
+  {
+    return theCredit;
+  }
+
+  /**
+   * Cancel the purchase of the ticket.
+   * 'Coins' are returned to the customer.
+   * The amount credited so far is set to zero.
+   */
+  public void cancel()
+  {
+    theTicketPrice = 0;
+    theCredit = 0;
+    tempCoins = coins;
+  }
+
+  /**
+   * The ticket has been bought, and money
+   * entered by the user is added to the total
+   * money in the machine
+   */
+  public void bought()
+  {
+    theMoneyInTheMachine = theMoneyInTheMachine + theCredit;
+    theCredit = 0;
+    coins = tempCoins;
+  }
+
+  /**
+   * Deliver in pence the total amount of money in the machine
+   *  that has been used to purchase tickets.
+   * @return The total money in the machine in pence.
+   */
+  public int moneyInMachine()
+  {
+    return theMoneyInTheMachine;
+  }
+
+  // This method is not required for 5.1
+  // However for exercise 5.2 it is required
+  /**
+   * Deliver how many 'coins' are in the machine.
+   * Thus if there were 63 10p coins
+   *  getNumCoins( 10 ) would return 63.
+   * @param  coin The coin selected
+   * @return Total number of 'coin'p coins in the machine.
+   */
+  public int getNumCoins( int coin )
+  {
+      int noOfCoins = 0;
+      switch(coin)
+      {
+          case 200: 
+            noOfCoins = coins.get(0);
+            break;
+          case 100:
+            noOfCoins = coins.get(1);
+            break;
+          case 50:
+            noOfCoins = coins.get(2);
+            break;
+          case 20:
+            noOfCoins = coins.get(3);
+            break;
+          case 10:
+            noOfCoins = coins.get(4);
+            break;
+      }
+      return noOfCoins;
+  }
+}
+
+
